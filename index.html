@@ -1,328 +1,43 @@
-<!DOCTYPE html>
-<html id="html" lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <title>إعادة تعيين كلمة السر • Instagram</title>
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 22px;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Roboto,
-        Helvetica,
-        Arial,
-        sans-serif;
-    }
+.input-wrapper input {
+  width: 100%;
+  padding: 16px 12px 6px;
+  font-size: 16px;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  background: #fafafa;
+  transition: all 0.25s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
 
-    body {
-      background-color: #fafafa;
-      color: #262626;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #a8a8a8;
+  background: #fff;
+}
 
-    .logo {
-      text-align: center;
-      font-size: 42px;
-      font-weight: 600;
-      margin-top: 30px;
-      margin-bottom: 10px;
-      letter-spacing: -1px;
-      color: #262626;
-      user-select: none;
-    }
+.input-wrapper label {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #8e8e8e;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  background: transparent;
+}
 
-    .wrapper {
-      width: 100%;
-      max-width: 400px;
-      margin: 20px auto 0;
-      padding: 0 20px;
-    }
-
-    .title {
-      font-size: 20px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      text-align: right;
-    }
-
-    .subtitle {
-      font-size: 14px;
-      color: #8e8e8e;
-      margin-bottom: 20px;
-      line-height: 1.5;
-      text-align: right;
-    }
-
-    .input-wrapper {
-      position: relative;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-
-    .input-wrapper input {
-      width: 100%;
-      padding: 14px 12px 6px;
-      font-size: 16px;
-      border: 1px solid #dbdbdb;
-      border-radius: 4px;
-      background: #fafafa;
-      transition: border-color 0.2s ease;
-    }
-
-    .input-wrapper input:focus {
-      outline: none;
-      border-color: #a8a8a8;
-      background: #fff;
-    }
-
-    .input-wrapper label {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 14px;
-      color: #8e8e8e;
-      pointer-events: none;
-      transition: 0.2s ease;
-    }
-
-    .input-wrapper input:focus + label,
-    .input-wrapper input:not(:placeholder-shown) + label {
-      top: 6px;
-      font-size: 11px;
-      color: #737373;
-    }
-
-    .strength-bar {
-      height: 6px;
-      width: 100%;
-      background: #dbdbdb;
-      border-radius: 4px;
-      margin-top: -10px;
-      margin-bottom: 12px;
-      overflow: hidden;
-    }
-
-    .strength-fill {
-      height: 100%;
-      width: 0%;
-      transition: 0.3s;
-    }
-
-    .btn {
-      width: 100%;
-      background-color: #0095f6;
-      color: #fff;
-      padding: 9px 0;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      margin-top: 6px;
-    }
-
-    .checkbox-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-top: 14px;
-    }
-
-    .checkbox-row label {
-      font-size: 12px;
-      line-height: 1.4;
-      cursor: pointer;
-      color: #262626;
-    }
-
-    /* شاشة التحميل */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #ffffffee;
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-
-    /* حركة الأمواج للنص */
-    .loading-text {
-      font-size: 28px;
-      font-weight: 600;
-      color: #262626;
-      animation: wave 1.2s infinite ease-in-out;
-    }
-
-    @keyframes wave {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    footer {
-      margin-top: 40px;
-      padding: 20px 0;
-      text-align: center;
-      font-size: 11px;
-      color: #8e8e8e;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-
-    .footer-links a {
-      color: #8e8e8e;
-      text-decoration: none;
-      font-size: 11px;
-    }
-
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="logo">Instagram</div>
-
-  <div class="wrapper">
-    <h1 class="title">إعادة تعيين كلمة السر</h1>
-
-    <p class="subtitle">
-      قم بإنشاء كلمة سر تتكون من 6 أحرف أو أرقام أجنبية على الأقل. ستحتاج كلمة السر هذه لتسجيل الدخول إلى حسابك.
-    </p>
-
-    <div class="input-wrapper">
-      <input type="text" id="email" placeholder=" " required />
-      <label for="email">رقم الهاتف المحمول أو اسم المستخدم أو البريد الإلكتروني</label>
-    </div>
-
-    <div class="input-wrapper">
-      <input type="password" id="password" placeholder=" " required />
-      <label for="password">كلمة السر الجديدة</label>
-    </div>
-
-    <div class="strength-bar">
-      <div class="strength-fill" id="strength-fill"></div>
-    </div>
-
-    <button class="btn" id="submitBtn">متابعة</button>
-
-    <div class="checkbox-row">
-      <input type="checkbox" id="logout">
-      <label for="logout">
-        تسجيل الخروج من كل الأماكن الأخرى لضمان عدم تمكن أي شخص آخر من الوصول إلى حسابك
-      </label>
-    </div>
-  </div>
-
-  <!-- شاشة التحميل -->
-  <div class="loading-screen" id="loadingScreen">
-    <div class="loading-text" id="loadingText">جاري التحميل...</div>
-  </div>
-
-  <footer>
-    <div class="footer-links">
-      <a href="#">Meta Verified</a>
-      <a href="#">تحميل جهات الاتصال وغير المستخدمين</a>
-      <a href="#">Instagram Lite</a>
-      <a href="#">حول</a>
-      <a href="#">المدونة</a>
-      <a href="#">الوظائف</a>
-      <a href="#">المساعدة</a>
-      <a href="#">API</a>
-      <a href="#">واجهة</a>
-      <a href="#">الخصوصية</a>
-      <a href="#">الشروط</a>
-    </div>
-
-    <div>Instagram from Meta © 2026</div>
-    <div style="margin-top: 4px;" id="lang-display">العربية</div>
-  </footer>
-
-  <script>
-    // دعم اللغة التلقائي
-    const userLang = navigator.language || navigator.userLanguage;
-    const html = document.getElementById("html");
-    const loadingText = document.getElementById("loadingText");
-
-    if (userLang.startsWith("ar")) {
-      html.lang = "ar";
-      html.dir = "rtl";
-      loadingText.innerText = "جاري التحميل...";
-    } 
-    else if (userLang.startsWith("en")) {
-      html.lang = "en";
-      html.dir = "ltr";
-      loadingText.innerText = "Loading...";
-    } 
-    else {
-      html.lang = userLang;
-      html.dir = "ltr";
-      loadingText.innerText = "Loading...";
-    }
-
-    // قيود حقل الهاتف/اليوزر/الإيميل
-    const emailInput = document.getElementById("email");
-
-    emailInput.addEventListener("input", () => {
-      let value = emailInput.value;
-      value = value.replace(/[^a-zA-Z0-9@._+]/g, "");
-      value = value.replace(/\s+/g, "");
-      emailInput.value = value;
-    });
-
-    // قوة كلمة السر
-    const passwordInput = document.getElementById("password");
-    const strengthFill = document.getElementById("strength-fill");
-
-    passwordInput.addEventListener("input", () => {
-      const value = passwordInput.value;
-      let strength = 0;
-
-      if (value.length >= 6) strength++;
-      if (/[0-9]/.test(value)) strength++;
-      if (/[A-Z]/.test(value)) strength++;
-      if (/[a-z]/.test(value)) strength++;
-      if (/[^A-Za-z0-9]/.test(value)) strength++;
-
-      const percent = (strength / 5) * 100;
-      strengthFill.style.width = percent + "%";
-
-      if (percent <= 30) strengthFill.style.background = "#ff3b30";
-      else if (percent <= 60) strengthFill.style.background = "#ffcc00";
-      else strengthFill.style.background = "#4cd964";
-    });
-
-    // عند الضغط على متابعة
-    document.getElementById("submitBtn").addEventListener("click", () => {
-      alert("تم التعديل");
-
-      const loading = document.getElementById("loadingScreen");
-      loading.style.display = "flex";
-
-      setTimeout(() => {
-        window.location.href = "https://www.instagram.com";
-      }, 2000);
-    });
-  </script>
-
-</body>
-</html>
+.input-wrapper input:focus + label,
+.input-wrapper input:not(:placeholder-shown) + label {
+  top: 6px;
+  font-size: 11px;
+  color: #737373;
+  transform: translateY(0);
+}
